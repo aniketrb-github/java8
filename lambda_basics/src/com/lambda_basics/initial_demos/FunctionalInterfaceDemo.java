@@ -3,7 +3,7 @@ package com.lambda_basics.initial_demos;
 import java.util.Scanner;
 
 /**
- * @author abharsa
+ * @author Aniket Bharsakale
  * In this program, we define a very simple Functional Interface
  * & just below in the main, we provide this interface a implementation via a LambdaExpression
  */
