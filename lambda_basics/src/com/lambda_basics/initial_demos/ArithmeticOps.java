@@ -49,7 +49,6 @@ public class ArithmeticOps {
 			else 
 				System.out.println("Division of 2 Numbers Program. Note: Input as a Denominator cannot be zero. Divide by 0 error !");
 		}
-		
 	}
 	
 	public static void main(String[] args) {
