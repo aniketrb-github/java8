@@ -3,6 +3,8 @@ package com.javabrains.exercise_one;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 public class ExerciseOneInJava8 {
 
@@ -34,8 +36,21 @@ public class ExerciseOneInJava8 {
 		conditionString = "\nPrint people having last name starting with 'C'";
 		printConditionally(peopleList, p -> p.getLastName().startsWith("C"), conditionString);
 		
+		/**
+		 * 4. Create a method that prints all people having first name starting with 'C'
+		 * We've used here Predicate FI : boolean test(T t) and
+		 * the Consumer FI : void accept(T t)
+		 */
+		System.out.println("\nPrinting people having 1st name with 'C' & using Predicate ");
+		printConditionallyWithInBuiltFI(peopleList, p -> p.getFirstName().startsWith("C"),  p -> System.out.println(p));
+		
+		System.out.println("\nPrinting people having 1st name with 'C' & using Streams");
+		printConditionallyUsingStream(peopleList, p -> p.getFirstName().startsWith("C"),  p -> System.out.println(p));
 	}
 	
+	/**
+	 * Here we used our user defined functional interface 
+	 */
 	private static void printConditionally(List<Person> peopleList, Condition<Person> condition,
 			String conditionString) {
 		System.out.println(conditionString);
@@ -44,6 +59,26 @@ public class ExerciseOneInJava8 {
 				System.out.println(person);
 			}
 		}
+	}
+	
+	/**
+	 * Here we used the Predicate & Consumer FI upon the collection which is sent along
+	 * but with the traditional for-each loop
+	 */
+	private static void printConditionallyWithInBuiltFI(List<Person> peopleList, Predicate<Person> predicate,
+			Consumer<Person> consumer) {
+		for (Person person : peopleList) {
+			if (predicate.test(person))
+				consumer.accept(person);
+		}
+	}
+	
+	/**
+	 * Here we used the java.util.stream.Stream<T>
+	 */
+	private static void printConditionallyUsingStream(List<Person> peopleList, Predicate<Person> predicate,
+			Consumer<Person> consumer) {
+		peopleList.stream().filter(p -> predicate.test(p)).sequential().forEach(consumer);
 	}
 
 }
