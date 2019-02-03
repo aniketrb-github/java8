@@ -6,7 +6,7 @@ import java.util.List;
 import com.javabrains.exercise_one.Person;
 
 public class StreamDemo1 {
-
+	
 	public static void main(String[] args) {
 		// Initialize & create data
 		List<Person> peopleList = Arrays.asList(
